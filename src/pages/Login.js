@@ -11,7 +11,7 @@ class Login extends React.Component {
     this.state = {
       // sizeIdex: 0,
       isSaveButtonDisabled: true,
-      loginName: 'Name',
+      loginName: '',
       load: false,
     };
   }
@@ -33,8 +33,8 @@ class Login extends React.Component {
 
   fucMaior3 = (event) => {
     if (event.target.value.length >= LETTER) {
-      this.setState({ isSaveButtonDisabled: false });
-    }
+      this.setState({ isSaveButtonDisabled: false, loginName: event.target.value });
+    } this.setState({ loginName: event.target.value });
   };
 
   validatonButton = async () => {
@@ -48,7 +48,7 @@ class Login extends React.Component {
       load: false,
     });
     history.push('/search');
-    console.log('bu');
+    // console.log('bu');
   };
 
   render() {
@@ -86,7 +86,9 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  history: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default Login;
