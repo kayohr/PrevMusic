@@ -1,5 +1,7 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Header from '../components/Header';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 const character = 2;
 
@@ -7,33 +9,52 @@ class Search extends React.Component {
   constructor() {
     super();
     this.state = {
-      // sizeIdex: 0,
+      // nomeArtista: '',
       isSaveButtonDisabled: true,
-      // load: false,
+      load: false,
+      albumArtist: [],
+      inputText: '',
     };
   }
 
+  componentDidMount() {
+    this.requisicaoApi();
+  }
+
   fucMaior2 = (event) => {
-    // const { searchName } = this.state;
     if (event.target.value.length >= character) {
-      this.setState({ isSaveButtonDisabled: false });
+      this.setState({ isSaveButtonDisabled: false, inputText: event.target.value });
     }
   };
 
-  // validatonButton = async () => {
-  //   const { loginName } = this.state;
+  requisicaoApi = async () => {
+    const { inputText } = this.state;
+    this.setState({
+      load: true,
 
-  //   this.setState({
-  //     load: true,
-  //   });
-  // };
+    });
+    const response = await searchAlbumsAPI(inputText);
+    this.setState({
+      load: false,
+      albumArtist: response,
+      // nomeArtista: '',
+
+    });
+    console.log(response);
+  };
 
   render() {
-    const { isSaveButtonDisabled } = this.state;
+    const { isSaveButtonDisabled, load, albumArtist, inputText } = this.state;
+    if (load) {
+      return (<p>Carregando...</p>);
+    }
     return (
       <div data-testid="page-search">
         Search
         <Header />
+        {/* { load
+          ? (<p>Carregando...</p>)
+          : ( */}
 
         <input
           data-testid="search-artist-input"
@@ -41,14 +62,33 @@ class Search extends React.Component {
           onChange={ this.fucMaior2 }
           type="text"
         />
+        {/* )} */}
         <button
           type="button"
           data-testid="search-artist-button"
           disabled={ isSaveButtonDisabled }
+          onClick={ this.requisicaoApi }
         >
           Pesquisar
         </button>
+        {
+          albumArtist.length === 0 ? (<p>Nenhum álbum foi encontrado</p>)
+            : (
+              <p>{`Resultado de álbuns de: ${inputText}`}</p>)
+        }
+        { albumArtist.map((album, index) => (
+          <div key={ index }>
+            <p>{ album.collectionName }</p>
+            <img src={ album.artworkUrl100 } alt={ album.collectionName } />
+            <NavLink
+              to={ `/album/${album.collectionId}` }
+              data-testid={ `link-to-album-${album.collectionId}` }
+            >
+              xabalu
+            </NavLink>
 
+          </div>
+        )) }
       </div>
     );
   }
