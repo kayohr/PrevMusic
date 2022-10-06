@@ -42,16 +42,20 @@ class Album extends React.Component {
         Album
         <p data-testid="artist-name">{informationAlbum[0].artistName}</p>
         <p data-testid="album-name">{informationAlbum[0].collectionName}</p>
-
-        { informationAlbum.map((musica, index) => (
-          (index > 0
+        {(informationAlbum.length === 0)
+          ? (
+            <p>xablau...</p>
+          )
+          : (
+            informationAlbum.map((musica, index) => (
+              (index > 0
                  && <MusicCard
                    trackName={ musica.trackName }
                    previewUrl={ musica.previewUrl }
                    key={ index }
                  />)
 
-        ))}
+            )))}
 
       </div>
     );
