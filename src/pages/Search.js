@@ -40,7 +40,7 @@ class Search extends React.Component {
       // nomeArtista: '',
 
     });
-    console.log(response);
+    // console.log(response);
   };
 
   render() {
@@ -84,7 +84,7 @@ class Search extends React.Component {
               to={ `/album/${album.collectionId}` }
               data-testid={ `link-to-album-${album.collectionId}` }
             >
-              xabalu
+              xablau
             </NavLink>
 
           </div>
