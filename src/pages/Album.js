@@ -10,7 +10,7 @@ class Album extends React.Component {
     informationAlbum: [],
     load: false,
     // check: '',
-    musicaFavorita: [],
+    // musicaFavorita: [],
   };
 
   componentDidMount() {
@@ -55,9 +55,10 @@ class Album extends React.Component {
     });
     const newMusic = informationAlbum.find((ele) => ele.trackId === trackId);
     const response = await addSong(newMusic);
-    this.setState({
-      musicaFavorita: response,
-    });
+    console.log(response);
+    // this.setState({
+    //   musicaFavorita: response,
+    // });
     this.setState({
       load: false,
     });
@@ -90,7 +91,7 @@ class Album extends React.Component {
                    trackName={ musica.trackName }
                    previewUrl={ musica.previewUrl }
                    key={ index }
-                   //  savedFavorit={ this.savedFavorit }
+                   savedFavorit={ this.savedFavorit }
                    musica={ musica }
                    addSong={ addSong }
                  />)
