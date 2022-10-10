@@ -32,9 +32,15 @@ class Login extends React.Component {
   // }
 
   fucMaior3 = (event) => {
+    this.setState({
+      load: true,
+    });
     if (event.target.value.length >= LETTER) {
       this.setState({ isSaveButtonDisabled: false, loginName: event.target.value });
     } this.setState({ loginName: event.target.value });
+    this.setState({
+      load: false,
+    });
   };
 
   validatonButton = async () => {
