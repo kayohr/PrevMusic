@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import getMusics from '../services/musicsAPI';
 
 class Album extends React.Component {
@@ -11,11 +11,38 @@ class Album extends React.Component {
     load: false,
     // check: '',
     // musicaFavorita: [],
+    musicasDoAlbum: [],
   };
 
   componentDidMount() {
     this.requestMusic();
+    this.musicsFavorites();
   }
+
+  validarCarregando = async (event) => {
+    const { checked, id } = event.target;
+    const { musicasDoAlbum } = this.state;
+    const newMusic = musicasDoAlbum.find((ele) => +ele.trackId === +id); // Nessa linha 25 ajuda da Ellen
+    if (checked) {
+      this.setState({
+        load: true,
+        [id]: true,
+      });
+      await addSong(newMusic);
+      this.setState({
+        load: false,
+      });
+    } else {
+      this.setState({
+        load: true,
+        [id]: false,
+      });
+      await removeSong(newMusic);
+      this.setState({
+        load: false,
+      });
+    }
+  };
 
   requestMusic = async () => {
     const { match: { params: { id } } } = this.props;
@@ -24,9 +51,22 @@ class Album extends React.Component {
     });
     // const { props: { id } } = this.pro.match.params;
     const musics = await getMusics(id);
+    // console.log(musics);
     this.setState({
       informationAlbum: musics,
       load: false,
+      musicasDoAlbum: musics.filter((e) => e.kind === 'song'),
+    });
+  };
+
+  // Com ajuda da Ellen
+  musicsFavorites = async () => {
+    const myMusics = await getFavoriteSongs();
+    const favoritas = myMusics.reduce((acc, curr) => ({
+      ...acc, [curr.trackId]: true,
+    }), {});
+    this.setState({
+      ...favoritas,
     });
   };
 
@@ -48,25 +88,13 @@ class Album extends React.Component {
   //   // }));
   // };
 
-  savedFavorit = async (trackId) => {
-    const { informationAlbum } = this.state;
-    this.setState({
-      load: true,
-    });
-    const newMusic = informationAlbum.find((ele) => ele.trackId === trackId);
-    const response = await addSong(newMusic);
-    console.log(response);
-    // this.setState({
-    //   musicaFavorita: response,
-    // });
-    this.setState({
-      load: false,
-    });
-    // console.log('xablau');
-  };
+  // saveMusics = async () => {
+  //   // const { musica } = this.props;
+  //   await addSong(musica);
+  // };
 
   render() {
-    const { informationAlbum, load } = this.state;
+    const { informationAlbum, load, musicasDoAlbum } = this.state;
     // console.log(informationAlbum);
     // if (load) {
     //   return (<p>Carregando...</p>);
@@ -74,28 +102,34 @@ class Album extends React.Component {
     return (
       <div data-testid="page-album">
         <Header />
-        Album
-        { informationAlbum.length > 0 && (
-          <>
-            <p data-testid="artist-name">{informationAlbum[0].artistName}</p>
-            <p data-testid="album-name">{informationAlbum[0].collectionName}</p>
-          </>
-        )}
-
         { load ? (<p>Carregando...</p>)
           : (
-            informationAlbum.map((musica, index) => (
-              (index > 0
-                 && <MusicCard
-                   trackId={ musica.trackId }
-                   trackName={ musica.trackName }
-                   previewUrl={ musica.previewUrl }
-                   key={ index }
-                   savedFavorit={ this.savedFavorit }
-                   musica={ musica }
-                   addSong={ addSong }
-                 />)
-            )))}
+            <>
+              Album
+              { informationAlbum.length > 0 && (
+                <>
+                  <p data-testid="artist-name">{informationAlbum[0].artistName}</p>
+                  <p data-testid="album-name">{informationAlbum[0].collectionName}</p>
+                </>
+              )}
+
+              { musicasDoAlbum.map((musica, index) => (
+                <div key={ index }>
+                  <MusicCard
+                    trackId={ musica.trackId }
+                    trackName={ musica.trackName }
+                    previewUrl={ musica.previewUrl }
+                    //  savedFavorit={ this.savedFavorit }
+                    // musica={ musica }
+                    //  addSong={ addSong }
+                    state={ this.state }
+                    validarCarregando={ this.validarCarregando }
+                  />
+
+                </div>
+              ))}
+            </>
+          )}
 
       </div>
     );
