@@ -37,10 +37,15 @@ class Login extends React.Component {
     });
     if (event.target.value.length >= LETTER) {
       this.setState({ isSaveButtonDisabled: false, loginName: event.target.value });
-    } this.setState({ loginName: event.target.value });
+    }
+    this.setState({ loginName: event.target.value });
     this.setState({
       load: false,
+
     });
+    if (event.target.value.length < LETTER) {
+      this.setState({ isSaveButtonDisabled: true, loginName: event.target.value });
+    }
   };
 
   validatonButton = async () => {
@@ -60,33 +65,38 @@ class Login extends React.Component {
   render() {
     const { isSaveButtonDisabled, load } = this.state;
     return (
-      <>
-        <div data-testid="page-login">Login</div>
-        <div>
-          { load ? (<p>Carregando...</p>)
-            : (
+      <div className="gif-container">
+        <div className="validation">
+          <div className="login">
+            <div data-testid="page-login">Login</div>
 
-              <input
-                data-testid="login-name-input"
-                type="text"
-                placeholder="username"
-                onChange={ this.fucMaior3 }
-              />
-            )}
-        </div>
-        <div>
+            { load ? (<p>Loading...</p>)
+              : (
 
-          <button
-            data-testid="login-submit-button"
-            type="button"
-            disabled={ isSaveButtonDisabled }
-            onClick={ this.validatonButton }
-          >
-            Entrar
-          </button>
-          ;
+                <input
+                  data-testid="login-name-input"
+                  type="text"
+                  placeholder="username"
+                  onChange={ this.fucMaior3 }
+                />
+              )}
+
+          </div>
+          <div className="button">
+
+            <button
+              data-testid="login-submit-button"
+              type="button"
+              disabled={ isSaveButtonDisabled }
+              onClick={ this.validatonButton }
+
+            >
+              Log in
+            </button>
+            ;
+          </div>
         </div>
-      </>
+      </div>
     );
   }
 }

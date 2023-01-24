@@ -49,46 +49,51 @@ class Search extends React.Component {
       return (<p>Carregando...</p>);
     }
     return (
-      <div data-testid="page-search">
-        Search
-        <Header />
-        {/* { load
+      <div className="cabeçalho">
+        <div data-testid="page-search">
+          <div className="gif-container2">
+            {/* Search */}
+            <Header />
+            {/* { load
           ? (<p>Carregando...</p>)
           : ( */}
 
-        <input
-          data-testid="search-artist-input"
-          placeholder="usernameArtista"
-          onChange={ this.fucMaior2 }
-          type="text"
-        />
-        {/* )} */}
-        <button
-          type="button"
-          data-testid="search-artist-button"
-          disabled={ isSaveButtonDisabled }
-          onClick={ this.requisicaoApi }
-        >
-          Pesquisar
-        </button>
-        {
-          albumArtist.length === 0 ? (<p>Nenhum álbum foi encontrado</p>)
-            : (
-              <p>{`Resultado de álbuns de: ${inputText}`}</p>)
-        }
-        { albumArtist.map((album, index) => (
-          <div key={ index }>
-            <p>{ album.collectionName }</p>
-            <img src={ album.artworkUrl100 } alt={ album.collectionName } />
-            <NavLink
-              to={ `/album/${album.collectionId}` }
-              data-testid={ `link-to-album-${album.collectionId}` }
+            <input
+              data-testid="search-artist-input"
+              placeholder="usernameArtista"
+              onChange={ this.fucMaior2 }
+              type="text"
+            />
+            {/* )} */}
+            <button
+              type="button"
+              data-testid="search-artist-button"
+              disabled={ isSaveButtonDisabled }
+              onClick={ this.requisicaoApi }
             >
-              xablau
-            </NavLink>
-
+              Search
+            </button>
           </div>
-        )) }
+
+          {
+            albumArtist.length === 0 ? (<p>Nenhum álbum foi encontrado</p>)
+              : (
+                <p className="name">{`Resultado de álbuns de: ${inputText}`}</p>)
+          }
+          { albumArtist.map((album, index) => (
+            <div key={ index }>
+              <p className="name">{ album.collectionName }</p>
+              <img src={ album.artworkUrl100 } alt={ album.collectionName } />
+              <NavLink
+                to={ `/album/${album.collectionId}` }
+                data-testid={ `link-to-album-${album.collectionId}` }
+              >
+                xablau
+              </NavLink>
+
+            </div>
+          )) }
+        </div>
       </div>
     );
   }

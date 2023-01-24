@@ -100,16 +100,33 @@ class Album extends React.Component {
     //   return (<p>Carregando...</p>);
     // }
     return (
-      <div data-testid="page-album">
+      <div
+        data-testid="page-album"
+        className="gif-container3"
+      >
         <Header />
         { load ? (<p>Carregando...</p>)
           : (
             <>
-              Album
+
+              <p className="name3">Album</p>
+
               { informationAlbum.length > 0 && (
                 <>
-                  <p data-testid="artist-name">{informationAlbum[0].artistName}</p>
-                  <p data-testid="album-name">{informationAlbum[0].collectionName}</p>
+                  <p
+                    data-testid="artist-name"
+                    className="name3"
+                  >
+                    {informationAlbum[0].artistName}
+
+                  </p>
+                  <p
+                    data-testid="album-name"
+                    className="name3"
+                  >
+                    {informationAlbum[0].collectionName}
+
+                  </p>
                 </>
               )}
 

@@ -54,7 +54,9 @@ class MusicCard extends React.Component {
     // const { load, check } = this.state;
 
     return (
-      <div>
+      <div
+        className="gif-container4"
+      >
         <p data-testid="trackName">{ trackName }</p>
         <audio data-testid="audio-component" src={ previewUrl } controls>
           <track kind="captions" />
@@ -65,6 +67,7 @@ class MusicCard extends React.Component {
         </audio>
         <label htmlFor="check">
           <input
+            className="favorita"
             id={ trackId }
             name={ `check-${trackId}` }
             type="checkbox"
