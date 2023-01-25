@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/app-toot-name/static/css/main.6eb66fb3.css",
-    "main.js": "/app-toot-name/static/js/main.685e81ae.js",
-    "static/media/yasu.gif": "/app-toot-name/static/media/yasu.8045c9e8e787c81ff164.gif",
-    "static/media/sona.gif": "/app-toot-name/static/media/sona.7dc0a2e5d2096c8a4d3c.gif",
-    "static/media/sona2.gif": "/app-toot-name/static/media/sona2.fd314aeabc349471d81b.gif",
-    "index.html": "/app-toot-name/index.html",
-    "main.6eb66fb3.css.map": "/app-toot-name/static/css/main.6eb66fb3.css.map",
-    "main.685e81ae.js.map": "/app-toot-name/static/js/main.685e81ae.js.map"
+    "main.css": "/PrevMusic/static/css/main.885516e0.css",
+    "main.js": "/PrevMusic/static/js/main.f74626bc.js",
+    "static/media/yasu.gif": "/PrevMusic/static/media/yasu.8045c9e8e787c81ff164.gif",
+    "static/media/sona.gif": "/PrevMusic/static/media/sona.7dc0a2e5d2096c8a4d3c.gif",
+    "static/media/sona2.gif": "/PrevMusic/static/media/sona2.fd314aeabc349471d81b.gif",
+    "index.html": "/PrevMusic/index.html",
+    "main.885516e0.css.map": "/PrevMusic/static/css/main.885516e0.css.map",
+    "main.f74626bc.js.map": "/PrevMusic/static/js/main.f74626bc.js.map"
   },
   "entrypoints": [
-    "static/css/main.6eb66fb3.css",
-    "static/js/main.685e81ae.js"
+    "static/css/main.885516e0.css",
+    "static/js/main.f74626bc.js"
   ]
 }
