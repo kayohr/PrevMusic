@@ -1,6 +1,7 @@
 {
   "name": "trybetunes",
   "version": "1.0.1",
+  "homepage": "github-page/",
   "private": false,
   "engines": {
     "node": "16"
@@ -16,7 +17,6 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://kayohr.github.io/PrevMusic/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
