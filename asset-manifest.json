@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/github-page/static/css/main.7158d29a.css",
-    "main.js": "/github-page/static/js/main.4049cc15.js",
-    "static/media/yasu.gif": "/github-page/static/media/yasu.8045c9e8e787c81ff164.gif",
-    "static/media/sona.gif": "/github-page/static/media/sona.7dc0a2e5d2096c8a4d3c.gif",
-    "static/media/sona2.gif": "/github-page/static/media/sona2.fd314aeabc349471d81b.gif",
-    "index.html": "/github-page/index.html",
-    "main.7158d29a.css.map": "/github-page/static/css/main.7158d29a.css.map",
-    "main.4049cc15.js.map": "/github-page/static/js/main.4049cc15.js.map"
+    "main.css": "/PrevMusic/static/css/main.885516e0.css",
+    "main.js": "/PrevMusic/static/js/main.779fba66.js",
+    "static/media/yasu.gif": "/PrevMusic/static/media/yasu.8045c9e8e787c81ff164.gif",
+    "static/media/sona.gif": "/PrevMusic/static/media/sona.7dc0a2e5d2096c8a4d3c.gif",
+    "static/media/sona2.gif": "/PrevMusic/static/media/sona2.fd314aeabc349471d81b.gif",
+    "index.html": "/PrevMusic/index.html",
+    "main.885516e0.css.map": "/PrevMusic/static/css/main.885516e0.css.map",
+    "main.779fba66.js.map": "/PrevMusic/static/js/main.779fba66.js.map"
   },
   "entrypoints": [
-    "static/css/main.7158d29a.css",
-    "static/js/main.4049cc15.js"
+    "static/css/main.885516e0.css",
+    "static/js/main.779fba66.js"
   ]
 }
